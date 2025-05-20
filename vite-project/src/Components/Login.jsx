@@ -20,7 +20,13 @@ const Login = () => {
 localStorage.setItem('user', JSON.stringify(res.data.data)); // ✅ store full user
 
       setTimeout(() => {
-        navigate("/DashBoard/Home"); // ✅ redirect to dashboard
+        const user = res.data.data;
+        if (user.role === 'admin') {
+          navigate("/DashBoard/admin"); // ✅ redirect to admin dashboard
+        } else {
+                  navigate("/DashBoard/Home");  // ✅ redirect to customer dashboard
+        }
+// ✅ redirect to dashboard
       }, 1000);
     } catch (error) {
       toast.error(error.response?.data?.message || 'Login failed');

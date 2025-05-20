@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomerDashboard from '../Admin/CustomerDashboard';
 
 export function SupportRequest() {
   const [device, setDevice] = useState('');
@@ -19,33 +20,49 @@ export function SupportRequest() {
     }
   }, []);
 
-  const handleSubmit = async () => {
-    if (!device || !issue || !scheduled) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
+ const handleSubmit = async () => {
+  if (!device || !issue || !scheduled) {
+    toast.error("Please fill in all fields.");
+    return;
+  }
 
-    try {
-      setLoading(true);
-      await axios.post('http://localhost:3000/api/repair', {
+  const token = localStorage.getItem('token'); // assuming token is stored after login
+
+  if (!token) {
+    toast.error("Authentication token not found.");
+    return;
+  }
+
+  try {
+    setLoading(true);
+    await axios.post(
+      'http://localhost:3000/api/repair',
+      {
         userId,
         device,
         issue,
         scheduled,
-      });
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-      toast.success('Support request submitted successfully!');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    } catch (error) {
-      toast.error(
-        error.response?.data?.error || 'Failed to submit support request'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+    toast.success('Support request submitted successfully!');
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  } catch (error) {
+    toast.error(
+      error.response?.data?.error || 'Failed to submit support request'
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-8 bg-white shadow-md rounded-xl">
@@ -94,6 +111,7 @@ export function SupportRequest() {
           {loading ? 'Submitting...' : 'Submit Request'}
         </button>
       </div>
+      <CustomerDashboard/>
 
       <div className="mt-8 text-sm text-gray-500">
         <p><strong>Note:</strong> For business clients, our technician will visit your site. Individuals can drop off their devices at our office or arrange courier delivery.</p>

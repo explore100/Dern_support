@@ -7,8 +7,10 @@ import {
   FaLifeRing,
   FaQuestionCircle,
   FaSignOutAlt,
+  
 } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
 
 const DashBoard = () => {
@@ -107,6 +109,11 @@ const DashBoard = () => {
           >
             <FaQuestionCircle /> Help
           </Link>
+          {user?.role === "admin" && (<Link
+            to="/DashBoard/admin"
+            className="flex items-center gap-3 hover:text-blue-600 transition">
+              <FaUser />  User</Link>)}
+          
            <button
     onClick={() => {
       localStorage.removeItem("user");

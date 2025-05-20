@@ -9,6 +9,13 @@ import About from "../Pages/About";
 import Support from "../Pages/Support";
 import Help from "../Pages/Help";
 import Homepage from "../Pages/Home";
+import AdminDashboard from "../Admin/AdminDashboard";
+import CustomerDashboard from "../Admin/CustomerDashboard";
+import SpareParts from "../Admin/SpareParts";
+
+import AdminD from "../Pages/AdminD";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +46,26 @@ export const router = createBrowserRouter([
           { path: "about", element: <About /> },
           { path: "support", element: <Support /> },
           { path: "help", element: <Help /> },
+
+          //admin  dashboard
+          {
+            path: "admin",
+            element: (
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminD />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "admin/spare-parts",
+            element: (
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <SpareParts />
+              </ProtectedRoute>
+            ),
+          },
+        
+         
         ],
       },
     ],
