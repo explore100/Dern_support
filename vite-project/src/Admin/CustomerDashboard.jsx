@@ -32,11 +32,15 @@ const CustomerDashboard = () => {
       <ul>
         {requests.map((req) => (
           <li key={req.id} className="mb-4 border-b pb-2">
-            <p><strong>Device:</strong> {req.device}</p>
-            <p><strong>Issue:</strong> {req.issue}</p>
-            <p><strong>Status:</strong> {req.status}</p>
-            <p><strong>Scheduled:</strong> {new Date(req.scheduled).toLocaleString()}</p>
-          </li>
+  <p><strong>Device:</strong> {req.device}</p>
+  <p><strong>Issue:</strong> {req.issue}</p>
+  <p><strong>Status:</strong> {req.status}</p>
+  <p><strong>Scheduled:</strong> {new Date(req.scheduled).toLocaleString()}</p>
+  {req.adminMessage && (
+    <p className="mt-2 text-blue-700"><strong>Admin Reply:</strong> {req.adminMessage}</p>
+  )}
+</li>
+
         ))}
       </ul>
     </div>

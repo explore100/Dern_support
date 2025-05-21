@@ -124,7 +124,7 @@ const SpareParts = () => {
                   className="w-20 border px-2 py-1"
                 />
               </td>
-              <td className="border px-4 py-2 text-sm text-gray-600">Blur input to save</td>
+              <td className="border px-4 py-2 text-sm text-gray-600">click anywhere to update</td>
             </tr>
           ))}
         </tbody>
