@@ -8,8 +8,6 @@ import axios from 'axios';
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-
- 
   
   const onSubmit = async (data) => {
     try {

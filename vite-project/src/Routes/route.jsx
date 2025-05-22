@@ -14,6 +14,7 @@ import CustomerDashboard from "../Admin/CustomerDashboard";
 import SpareParts from "../Admin/SpareParts";
 
 import AdminD from "../Pages/AdminD";
+import ViewSpareParts from "../Pages/ViewSpareParts";
 
 
 
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
           { path: "about", element: <About /> },
           { path: "support", element: <Support /> },
           { path: "help", element: <Help /> },
+          { path: "spare-parts", element: <ViewSpareParts /> },
 
           //admin  dashboard
           {

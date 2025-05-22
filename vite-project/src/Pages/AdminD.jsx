@@ -10,8 +10,6 @@ const AdminD = () => {
         <ul>
             <li>
                 <AdminDashboard/>
-        
-        <SpareParts/>
             </li>
         </ul>
     </div>

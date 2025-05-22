@@ -103,6 +103,9 @@ const DashBoard = () => {
           >
             <FaLifeRing /> Support
           </Link>
+          <Link to="/DashBoard/spare-parts" className="flex items-center gap-3 hover:text-blue-600 transition" >
+            <FaInfoCircle /> Spare Parts
+          </Link>
           <Link
             to="/DashBoard/help"
             className="flex items-center gap-3 hover:text-blue-600 transition"
