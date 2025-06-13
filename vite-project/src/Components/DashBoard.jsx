@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const DashBoard = () => {
@@ -116,16 +118,20 @@ const DashBoard = () => {
             to="/DashBoard/admin"
             className="flex items-center gap-3 hover:text-blue-600 transition">
               <FaUser />  User</Link>)}
-          
-           <button
-    onClick={() => {
-      localStorage.removeItem("user");
+         
+      <button
+  onClick={() => {
+    localStorage.removeItem("user");
+    toast.success("Logged out successfully!", { position: "top-right" });
+    setTimeout(() => {
       window.location.href = "/login";
-    }}
-    className="flex items-center gap-3 text-left hover:text-red-600 transition text-lg text-gray-700"
-  >
-    <FaSignOutAlt /> Logout
-  </button>
+    }, 1000);
+  }}
+  className="flex items-center gap-3 text-left hover:text-red-600 transition text-lg text-gray-700"
+>
+  <FaSignOutAlt /> Logout
+</button>
+<ToastContainer />
         </nav>
       </div>
 
